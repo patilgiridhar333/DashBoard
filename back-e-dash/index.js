@@ -4,7 +4,8 @@ const cors = require("cors");
 const user = require("./user");
 const Product = require("./product");
 const Jwt = require("jsonwebtoken");
-const jwtKey = "e-comm";
+
+require("dotenv").config();
 
 const app = express();
 
@@ -15,24 +16,34 @@ app.post("/signup", async (req, resp) => {
   let result = await users.save();
   result = result.toObject();
   delete result.password;
-  Jwt.sign({ result }, jwtKey, { expiresIn: "24h" }, (err, token) => {
-    if (err) {
-      resp.send({});
+  Jwt.sign(
+    { result },
+    process.env.jwtKey,
+    { expiresIn: "24h" },
+    (err, token) => {
+      if (err) {
+        resp.send({});
+      }
+      resp.send({ result, token });
     }
-    resp.send({ result, token });
-  });
+  );
   //   resp.send(result);
 });
 app.post("/login", async (req, resp) => {
   if (req.body.email && req.body.password) {
     let result = await user.findOne(req.body).select("-password");
     if (result) {
-      Jwt.sign({ result }, jwtKey, { expiresIn: "24h" }, (err, token) => {
-        if (err) {
-          resp.send({});
+      Jwt.sign(
+        { result },
+        process.env.jwtKey,
+        { expiresIn: "24h" },
+        (err, token) => {
+          if (err) {
+            resp.send({});
+          }
+          resp.send({ result, token });
         }
-        resp.send({ result, token });
-      });
+      );
     } else {
       resp.send({});
     }
@@ -94,7 +105,7 @@ function midlleWare(req, resp, next) {
   if (token) {
     token = token.split(" ")[1];
     // console.log(token);
-    Jwt.verify(token, jwtKey, (err, valid) => {
+    Jwt.verify(token, process.env.jwtKey, (err, valid) => {
       if (err) {
         resp.send({
           result: "please send valid authorization key in the header",
@@ -108,4 +119,4 @@ function midlleWare(req, resp, next) {
   }
 }
 
-app.listen(9000);
+app.listen(process.env.PORT);
