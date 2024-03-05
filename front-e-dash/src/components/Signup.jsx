@@ -15,7 +15,7 @@ export default function Signup() {
   });
 
   const handleSubmit = async (e) => {
-    let result = await fetch("http://localhost:9000/signup", {
+    let result = await fetch("/signup", {
       method: "post",
       body: JSON.stringify({ name, email, password }),
       headers: {

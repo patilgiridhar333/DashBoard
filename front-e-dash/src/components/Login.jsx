@@ -13,7 +13,7 @@ export default function Login() {
   });
 
   const handleSubmit = async () => {
-    let result = await fetch("http://localhost:9000/login", {
+    let result = await fetch("/login", {
       method: "post",
       body: JSON.stringify({ email, password }),
       headers: { "Content-Type": "application/json" },

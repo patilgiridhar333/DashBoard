@@ -15,7 +15,7 @@ export default function Add() {
 
     let userId = JSON.parse(localStorage.getItem("user"))._id;
     console.log(userId);
-    let result = await fetch("http://localhost:9000/add", {
+    let result = await fetch("/add", {
       method: "post",
       body: JSON.stringify({ name, brand, price, userId }),
       headers: {

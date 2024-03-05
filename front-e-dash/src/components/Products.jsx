@@ -9,7 +9,7 @@ export default function Products() {
   }, []);
 
   const getProducts = async () => {
-    let result = await fetch("http://localhost:9000/", {
+    let result = await fetch("/", {
       headers: {
         authorization: `bearer ${JSON.parse(localStorage.getItem("token"))}`,
       },
@@ -19,7 +19,7 @@ export default function Products() {
   };
 
   const handleDelete = async (id) => {
-    let result = await fetch(`http://localhost:9000/delete/${id}`, {
+    let result = await fetch(`/delete/${id}`, {
       method: "delete",
       headers: {
         authorization: `bearer ${JSON.parse(localStorage.getItem("token"))}`,
@@ -34,7 +34,7 @@ export default function Products() {
 
   const handleSearch = async (text) => {
     if (text) {
-      let result = await fetch(`http://localhost:9000/search/${text}`, {
+      let result = await fetch(`/search/${text}`, {
         headers: {
           authorization: `bearer ${JSON.parse(localStorage.getItem("token"))}`,
         },
