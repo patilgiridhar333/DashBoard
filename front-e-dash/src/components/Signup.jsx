@@ -15,7 +15,7 @@ export default function Signup() {
   });
 
   const handleSubmit = async (e) => {
-    let result = await fetch("/signup", {
+    let result = await fetch("https://dash-board-mu.vercel.app/signup", {
       method: "post",
       body: JSON.stringify({ name, email, password }),
       headers: {

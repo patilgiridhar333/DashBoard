@@ -12,7 +12,7 @@ export default function Add() {
     handleSubmit1(params.id);
   }, []);
   const handleSubmit1 = async (id) => {
-    let result = await fetch(`/update/${id}`, {
+    let result = await fetch(`https://dash-board-mu.vercel.app/update/${id}`, {
       headers: {
         authorization: `bearer ${JSON.parse(localStorage.getItem("token"))}`,
       },
@@ -25,7 +25,7 @@ export default function Add() {
   };
   const handleSubmit = async () => {
     let id = params.id;
-    let result = await fetch(`/update/${id}`, {
+    let result = await fetch(`https://dash-board-mu.vercel.app/update/${id}`, {
       method: "put",
       body: JSON.stringify({ name, brand, price }),
       headers: {

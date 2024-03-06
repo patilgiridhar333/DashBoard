@@ -9,7 +9,7 @@ export default function Products() {
   }, []);
 
   const getProducts = async () => {
-    let result = await fetch("/", {
+    let result = await fetch("https://dash-board-mu.vercel.app/", {
       headers: {
         authorization: `bearer ${JSON.parse(localStorage.getItem("token"))}`,
       },
@@ -19,7 +19,7 @@ export default function Products() {
   };
 
   const handleDelete = async (id) => {
-    let result = await fetch(`/delete/${id}`, {
+    let result = await fetch(`https://dash-board-mu.vercel.app/delete/${id}`, {
       method: "delete",
       headers: {
         authorization: `bearer ${JSON.parse(localStorage.getItem("token"))}`,
@@ -34,11 +34,16 @@ export default function Products() {
 
   const handleSearch = async (text) => {
     if (text) {
-      let result = await fetch(`/search/${text}`, {
-        headers: {
-          authorization: `bearer ${JSON.parse(localStorage.getItem("token"))}`,
-        },
-      });
+      let result = await fetch(
+        `https://dash-board-mu.vercel.app/search/${text}`,
+        {
+          headers: {
+            authorization: `bearer ${JSON.parse(
+              localStorage.getItem("token")
+            )}`,
+          },
+        }
+      );
       result = await result.json();
       if (result) setProducts(result);
     } else getProducts();
