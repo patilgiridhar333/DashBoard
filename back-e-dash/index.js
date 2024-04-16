@@ -11,7 +11,7 @@ const app = express();
 
 app.use(express.json());
 const corsOptions = {
-  origin: "https://dash-board-frontend-two.vercel.app",
+  origin: "*",
 };
 
 app.use(cors(corsOptions));
