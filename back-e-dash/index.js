@@ -10,16 +10,13 @@ console.log("server started");
 const app = express();
 
 app.use(express.json());
-app.AddCors((options) => {
-  options.AddPolicy(_corsName, (builder) => {
-    builder
-      .AllowAnyOrigin()
-      .AllowAnyMethod()
-      .AllowAnyHeader()
-      .AllowCredentials();
-  });
-});
-
+app.UseCors((x) =>
+  x
+    .AllowAnyMethod()
+    .AllowAnyHeader()
+    .SetIsOriginAllowed((origin) => true) // allow any origin
+    .AllowCredentials()
+);
 app.post("/signup", async (req, resp) => {
   const users = new user(req.body);
   let result = await users.save();
