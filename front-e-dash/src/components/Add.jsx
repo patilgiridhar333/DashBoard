@@ -15,7 +15,7 @@ export default function Add() {
 
     let userId = JSON.parse(localStorage.getItem("user"))._id;
     console.log(userId);
-    let result = await fetch("https://dash-board-mu.vercel.app/add", {
+    let result = await fetch("https://dash-board-api-one.vercel.app/add", {
       method: "post",
       body: JSON.stringify({ name, brand, price, userId }),
       headers: {

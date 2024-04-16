@@ -13,7 +13,7 @@ export default function Login() {
   });
 
   const handleSubmit = async () => {
-    let result = await fetch("https://dash-board-mu.vercel.app/login", {
+    let result = await fetch("https://dash-board-api-one.vercel.app/login", {
       method: "post",
       body: JSON.stringify({ email, password }),
       headers: { "Content-Type": "application/json" },

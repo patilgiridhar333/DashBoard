@@ -9,7 +9,7 @@ export default function Products() {
   }, []);
 
   const getProducts = async () => {
-    let result = await fetch("https://dash-board-mu.vercel.app/", {
+    let result = await fetch("https://dash-board-api-one.vercel.app/", {
       headers: {
         authorization: `bearer ${JSON.parse(localStorage.getItem("token"))}`,
       },
@@ -19,7 +19,7 @@ export default function Products() {
   };
 
   const handleDelete = async (id) => {
-    let result = await fetch(`https://dash-board-mu.vercel.app/delete/${id}`, {
+    let result = await fetch(`https://dash-board-api-one.vercel.app/${id}`, {
       method: "delete",
       headers: {
         authorization: `bearer ${JSON.parse(localStorage.getItem("token"))}`,
@@ -35,7 +35,7 @@ export default function Products() {
   const handleSearch = async (text) => {
     if (text) {
       let result = await fetch(
-        `https://dash-board-mu.vercel.app/search/${text}`,
+        `https://dash-board-api-one.vercel.app/${text}`,
         {
           headers: {
             authorization: `bearer ${JSON.parse(
