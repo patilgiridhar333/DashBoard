@@ -6,11 +6,17 @@ const Product = require("./product");
 const Jwt = require("jsonwebtoken");
 
 require("dotenv").config();
-
+console.log("server started");
 const app = express();
 
 app.use(express.json());
-app.use(cors());
+app.use(
+  cors({
+    origin: [""],
+    methods: ["POST", "GET", "UPDATE", "DELETE"],
+    credentials: true,
+  })
+);
 app.post("/signup", async (req, resp) => {
   const users = new user(req.body);
   let result = await users.save();
