@@ -12,7 +12,7 @@ const app = express();
 app.use(express.json());
 app.use(
   cors({
-    origin: [""],
+    origin: ["https://dash-board-frontend-two.vercel.app/"],
     methods: ["POST", "GET", "UPDATE", "DELETE"],
     credentials: true,
   })
