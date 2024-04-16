@@ -15,11 +15,12 @@ export default function Signup() {
   });
 
   const handleSubmit = async (e) => {
-    let result = await fetch("http://dash-board-api-one.vercel.app/signup", {
+    let result = await fetch("https://dash-board-api-one.vercel.app/signup", {
       method: "post",
       body: JSON.stringify({ name, email, password }),
       headers: {
         "Content-Type": "application/json",
+        "Access-Control-Allow-Origin": "*",
       },
     });
     result = await result.json();
