@@ -10,13 +10,18 @@ console.log("server started");
 const app = express();
 
 app.use(express.json());
-app.UseCors((x) =>
-  x
-    .AllowAnyMethod()
-    .AllowAnyHeader()
-    .SetIsOriginAllowed((origin) => true) // allow any origin
-    .AllowCredentials()
-);
+app.use((req, res, next) => {
+  res.setHeader("Access-Control-Allow-Origin", "*");
+  res.setHeader(
+    "Access-Control-Allow-Methods",
+    "OPTIONS, GET, POST, PUT, PATCH, DELETE"
+  );
+  res.setHeader("Access-Control-Allow-Headers", "Content-Type, Authorization");
+  if (req.method === "OPTIONS") {
+    return res.sendStatus(200);
+  }
+  next();
+});
 app.post("/signup", async (req, resp) => {
   const users = new user(req.body);
   let result = await users.save();
