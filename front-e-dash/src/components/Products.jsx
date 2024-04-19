@@ -19,12 +19,15 @@ export default function Products() {
   };
 
   const handleDelete = async (id) => {
-    let result = await fetch(`https://dash-board-api-one.vercel.app/${id}`, {
-      method: "delete",
-      headers: {
-        authorization: `bearer ${JSON.parse(localStorage.getItem("token"))}`,
-      },
-    });
+    let result = await fetch(
+      `https://dash-board-api-one.vercel.app/delete/${id}`,
+      {
+        method: "delete",
+        headers: {
+          authorization: `bearer ${JSON.parse(localStorage.getItem("token"))}`,
+        },
+      }
+    );
 
     result = await result.json();
     if (result) {

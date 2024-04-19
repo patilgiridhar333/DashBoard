@@ -12,11 +12,14 @@ export default function Add() {
     handleSubmit1(params.id);
   }, []);
   const handleSubmit1 = async (id) => {
-    let result = await fetch(`https://dash-board-api-one.vercel.app/${id}`, {
-      headers: {
-        authorization: `bearer ${JSON.parse(localStorage.getItem("token"))}`,
-      },
-    });
+    let result = await fetch(
+      `https://dash-board-api-one.vercel.app/update/${id}`,
+      {
+        headers: {
+          authorization: `bearer ${JSON.parse(localStorage.getItem("token"))}`,
+        },
+      }
+    );
     result = await result.json();
 
     setName(result.name);
@@ -25,14 +28,17 @@ export default function Add() {
   };
   const handleSubmit = async () => {
     let id = params.id;
-    let result = await fetch(`https://dash-board-api-one.vercel.app/${id}`, {
-      method: "put",
-      body: JSON.stringify({ name, brand, price }),
-      headers: {
-        "Content-Type": "application/json",
-        authorization: `bearer ${JSON.parse(localStorage.getItem("token"))}`,
-      },
-    });
+    let result = await fetch(
+      `https://dash-board-api-one.vercel.app/update/${id}`,
+      {
+        method: "put",
+        body: JSON.stringify({ name, brand, price }),
+        headers: {
+          "Content-Type": "application/json",
+          authorization: `bearer ${JSON.parse(localStorage.getItem("token"))}`,
+        },
+      }
+    );
     result = await result.json();
 
     navigate("/");
