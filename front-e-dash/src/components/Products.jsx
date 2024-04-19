@@ -35,7 +35,7 @@ export default function Products() {
   const handleSearch = async (text) => {
     if (text) {
       let result = await fetch(
-        `https://dash-board-api-one.vercel.app/${text}`,
+        `https://dash-board-api-one.vercel.app/search/${text}`,
         {
           headers: {
             authorization: `bearer ${JSON.parse(
